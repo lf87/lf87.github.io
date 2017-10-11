@@ -1,0 +1,123 @@
+// Table of Contents
+// Calculate REM: REM font sizes are relative to the font size set on the HTML element
+// Fonts: Font mixins with customisable weights and styles
+// Font smoothing: Don't use if texts loses readability (works best for text on a dark background)
+// Non mobile first Breakpoints: Base styles at largest viewport
+// Misc Breakpoints: "Greater than" targetting, and height detection (which may be useful for tweaking menus)
+// Clearfix: Atomatically clear its child elements
+// Visually hide an element: Screen readers can still detect this information
+// Set REM font size with pixel fallback
+@function calculate-rem($size) {
+    $rem-size: $size / 16px;
+    @return $rem-size * 1rem;
+}
+
+@mixin font-size($size: 14, $line: $size * 1.85) {
+    font-size: $size;
+    line-height: $line;
+    font-size: calculate-rem($size);
+    line-height: calculate-rem($line);
+}
+
+// Fonts
+@mixin lato($weight: 400, $style: normal) {
+    font-family: 'Lato', sans-serif;
+    font-weight: $weight;
+    font-style: $style;
+}
+
+// Font smoothing
+@mixin font-smoothing($value: antialiased) {
+    @if $value==antialiased {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+    }
+    @else {
+        -moz-osx-font-smoothing: auto;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+// Mobile first Breakpoints
+@mixin bp-lg {
+    @media only screen and (min-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin bp-md {
+    @media only screen and (min-width: 991px) {
+        @content;
+    }
+}
+
+@mixin bp-sm {
+    @media only screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin bp-xs {
+    @media only screen and (min-width: 480px) {
+        @content;
+    }
+}
+
+// Misc Breakpoints
+@mixin bp-hsm {
+    @media only screen and (max-height: 768px) {
+        @content;
+    }
+}
+
+@mixin bp-hxsm {
+    @media only screen and (max-height: 568px) {
+        @content;
+    }
+}
+
+@mixin bp-hxs {
+    @media only screen and (max-height: 400px) {
+        @content;
+    }
+}
+
+// Clearfix
+@mixin clearfix {
+    &::before,
+    &::after {
+        content: '';
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+// Visually hide an element
+@mixin visually-hidden {
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+}
+
+
+@mixin full-width {
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+// Tranisitions
+@mixin anipop($delay: 0) {
+    transition: transform .5s cubic-bezier(.18, -.25, .27, 1.95) $delay;
+    transform: scale3d(.75, .75, .75);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
