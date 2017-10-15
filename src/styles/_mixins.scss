@@ -12,7 +12,7 @@
     @return $rem-size * 1rem;
 }
 
-@mixin font-size($size: 14, $line: $size * 1.85) {
+@mixin font-size($size: 14, $line: $size * 1.75) {
     font-size: $size;
     line-height: $line;
     font-size: calculate-rem($size);

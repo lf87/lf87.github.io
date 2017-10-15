@@ -14,41 +14,40 @@
   <header>
     <ul id="menu">
       <li>
-        <a href="#about">About</a>
+        <a class="scroll-to" href="#about">About</a>
         <span class="slide-text" aria-hidden>About</span>
       </li>
       <li>
-        <a href="#work">Work</a>
+        <a class="scroll-to" href="#work">Work</a>
         <span class="slide-text" aria-hidden>Work</span>
       </li>
       <li>
-        <a href="#code">Code</a>
+        <a class="scroll-to" href="#code">Code</a>
         <span class="slide-text" aria-hidden>Code</span>
       </li>
       <li>
-        <a href="#skills">Skills</a>
+        <a class="scroll-to" href="#skills">Skills</a>
         <span class="slide-text" aria-hidden>Skills</span>
       </li>
-      <li id="home" class="back-to-top active">
+      <li id="back-to-top" class="back-to-top active">
         <svg class="logo slide-text" viewBox="0 0 478 431.6" xmlns="http://www.w3.org/2000/svg">
             <path class="logo-l1" d="M102 99.8 239 0 0 174v216.7l239 40.8V271.1l-137 22.4z" id="XMLID_11_" />
             <path class="logo-f1" d="M239 102.5V0L102 99.8v193.7l68.5-11.2v-66.5l68.5-22.3v-55.1l-68.5 30.1v-30.7z" id="XMLID_10_" />
             <path class="logo-l2" d="M376 99.8 239 .1l239 174v216.7l-239 40.8V271.2l137 22.4z" id="XMLID_9_" />
             <path class="logo-f2" d="M239 102.6V.1l137 99.7v193.8l-68.5-11.2v-66.6L239 193.5v-55l68.5 30.1v-30.8z" id="XMLID_8_" />
         </svg>
-        <a href="#home">
+        <a id="back-to-top" class="scroll-to" href="#home">
           <span></span>
         </a>
       </li>
     </ul>
   </header>
-  <main id="main">
+  <main id="home">
     <!-- Add this syntax to the page where you're extending this template -->
     {% block content %} {% endblock %}
   </main>
   <footer>
   </footer>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="dist/assets/js/main.min.js"></script>
 </body>
 

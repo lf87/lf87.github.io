@@ -1,172 +1,87 @@
-// Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a "strict" operating context.
-// This strict context prevents certain actions from being taken and throws more exceptions.
-// And:
-
-// Strict mode helps out in a couple ways:
-
-// It catches some common coding bloopers, throwing exceptions.
-// It prevents, or throws errors, when relatively "unsafe" actions are taken (such as gaining access to the global object).
-// It disables features that are confusing or poorly thought out.
-
-// When the below is set to true, the comment below enables use strict globally
-
 /*jshint strict: false */
 
 (function() {
   'use strict';
-  // Menu
 
-  var menu = document.getElementById('menu');
+  // Loadash Debounce Script
+  // Returns a function, that, as long as it continues to be invoked, will not
+  // be triggered. The function will be called after it stops being called for
+  // N milliseconds. If `immediate` is passed, trigger the function on the
+  // leading edge, instead of the trailing.
+  function debounce(func, wait, immediate) {
+    var timeout;
+    return function() {
+      var context = this,
+        args = arguments;
+      var later = function() {
+        timeout = null;
+        if (!immediate) {
+          func.apply(context, args);
+        }
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) {
+        func.apply(context, args);
+      }
+    };
+  }
+
+  // Menu - Variables
+  const menu = document.getElementById('menu');
   let listItems = Array.from(menu.getElementsByTagName('li'));
 
+  // Menu - Add and remove classes upon click
   const handleClick = (e) => {
     e.preventDefault();
     listItems.forEach(node => {
       node.classList.remove('active');
     });
     e.currentTarget.classList.add('active');
-
   };
 
+  // Menu - Add event listener to each '#menu li'
   listItems.forEach(node => {
     node.addEventListener('click', handleClick);
   });
 
-  // Skill Switch
-  const switchWrap = document.getElementById('skill-switch');
-  let skillEl = document.querySelectorAll('#skill-switch-list li');
-  let switchDelay = 1.5;
-  let switchArray = [];
-
-  [].forEach.call(skillEl, function(el) {
-    switchArray.push(el.innerHTML); // Each iteration is pushed to an array
-  });
-
-  const tlSwitch = new TimelineMax({
-    onComplete: function() {
-      this.restart();
-    }
-  });
-
-  tlSwitch.to(switchWrap, 0.75, {
-      text: switchArray[0],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 0.5, {
-      text: switchArray[1],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[2],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1.5, {
-      text: switchArray[3],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[4],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[5],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    });
-
   // Add loaded class on page load
   window.onload = function() {
-    document.body.classList.add("loaded");
+    document.body.classList.add('loaded');
   };
 
-  // Add/Remove focus if tab pressed/Mouse clicked
+  // Add focus class upon tab key press
   document.addEventListener('keydown', function(e) {
     if (e.keyCode === 9) {
-      document.body.classList.add("show-focus-outlines");
+      document.body.classList.add('show-focus-outlines');
     }
   });
 
-  document.addEventListener('click', function(e) {
-    document.body.classList.remove("show-focus-outlines");
+  // Remove focus class on click
+  document.addEventListener('click', function() {
+    document.body.classList.remove('show-focus-outlines');
   });
 
-  // Scroll to specific anchor
-  var $this;
-  var href;
-  var topY;
+  // Back to top - Variables
+  let scrollY;
+  let scrollPos;
+  const backToTop = document.getElementById('back-to-top');
 
-  function scrollTo() {
-    $this = $(this);
-    var href = $this.attr("href");
-    var topY = $(href).offset().top;
-    $this.on('click', function(event) {
-      event.preventDefault();
-      TweenLite.to(window, 1, {
-        scrollTo: {
-          y: topY,
-          offsetY: 10
-        },
-        force3D: true
-      });
-    });
-  }
-  $('#menu > li > a').each(scrollTo);
-
-  window.onscroll = function(oEvent) {
-    // var mydivpos = document.getElementById("about").offsetTop;
-    var mydivpos = 10;
-    var scrollPos = window.pageYOffset;
-    if (scrollPos >= mydivpos) {
-      document.getElementById("home").classList.add('scrolled');
+  // Back to Top - Add class to '#home' when window scrolled beyond 10px
+  let addClassOnScroll = debounce(function() {
+    scrollY = 10;
+    scrollPos = window.pageYOffset;
+    if (scrollPos >= scrollY) {
+      backToTop.classList.add('scrolled');
+    } else {
+      backToTop.classList.remove('scrolled');
     }
-    else {
-      document.getElementById("home").classList.remove('scrolled');
-    }
-  };
-  var mydivpos = 10;
-  var scrollPos = window.pageYOffset;
-  if (scrollPos >= mydivpos) {
-    document.getElementById("home").classList.add('scrolled');
-  }
-  else {
-    document.getElementById("home").classList.remove('scrolled');
-  }
+  }, 250);
 
+  // Back to Top - Create Event Listener
+  window.addEventListener('scroll', function() {
+    addClassOnScroll();
+  });
 
-  // Page transitions
-  // Page flip
-  // let i = 0;
-  // let tlPageFlip = [];
-  // let content = [];
-  // let elContent = document.querySelectorAll('.content');
-  // let elContentArr = [];
-  // let elNav = [];
-  // let prevClick;
-  // // Loops through all menu items (equal to amount of sections/pages)
-  // for (let item of listItems) {
-  //     i++;
-  //     // Set-up tweens
-  //     elContentArr[i] = document.getElementById('content' + i);
-  //     tlPageFlip[i] = new TimelineLite({ paused: true });
-  //     tlPageFlip[i].to(elContentArr[i], 0.3, { x: '0' /*, onComplete: resetContent */ });
-  //     tlPageFlip[i].progress(1).progress(0);
-
-  //     // Self calling closure to (prevent overide of event listeners)
-  //     (function(i) {
-  //         document.getElementById('nav' + i).addEventListener('click', (event) => {
-  //             tlPageFlip[i].play();
-  //             console.log("tlPageFlip[i]", tlPageFlip[i]);
-  //         });
-  //     }(i));
-  // }
-
-}());
-
-(function() {
-  // this anonymous function is sloppy...
 }());

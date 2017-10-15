@@ -92,6 +92,7 @@
     // Custom Globals
     "globals"       : {
                         "Linear"        : true,
-                        "TimelineMax"   : true
+                        "TimelineMax"   : true,
+                        "TweenLite"     : true
                     }
 }
