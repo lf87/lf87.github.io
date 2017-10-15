@@ -13,103 +13,160 @@
 /*jshint strict: false */
 
 (function() {
-    'use strict';
-    // Menu
+  'use strict';
+  // Menu
 
-    var menu = document.getElementById('menu');
-    let listItems = Array.from(menu.getElementsByTagName('li'));
+  var menu = document.getElementById('menu');
+  let listItems = Array.from(menu.getElementsByTagName('li'));
 
-    const handleClick = (e) => {
-        e.preventDefault();
-        listItems.forEach(node => {
-            node.classList.remove('active');
-        });
-        e.currentTarget.classList.add('active');
-
-    };
-
+  const handleClick = (e) => {
+    e.preventDefault();
     listItems.forEach(node => {
-        node.addEventListener('click', handleClick);
+      node.classList.remove('active');
     });
+    e.currentTarget.classList.add('active');
 
-    // Skill Switch
-    const switchWrap = document.getElementById('skill-switch');
-    let skillEl = document.querySelectorAll('#skills li');
-    let switchDelay = 1.5;
-    let switchArray = [];
+  };
 
-    [].forEach.call(skillEl, function(el) {
-        switchArray.push(el.innerHTML); // Each iteration is pushed to an array
-    });
+  listItems.forEach(node => {
+    node.addEventListener('click', handleClick);
+  });
 
-    const tlSwitch = new TimelineMax({ onComplete: function() { this.restart(); } });
+  // Skill Switch
+  const switchWrap = document.getElementById('skill-switch');
+  let skillEl = document.querySelectorAll('#skill-switch-list li');
+  let switchDelay = 1.5;
+  let switchArray = [];
 
-    tlSwitch.to(switchWrap, 0.75, { text: switchArray[0], delay: switchDelay, ease: Linear.easeNone })
-        .to(switchWrap, 0.5, { text: switchArray[1], delay: switchDelay, ease: Linear.easeNone })
-        .to(switchWrap, 1, { text: switchArray[2], delay: switchDelay, ease: Linear.easeNone })
-        .to(switchWrap, 1.5, { text: switchArray[3], delay: switchDelay, ease: Linear.easeNone })
-        .to(switchWrap, 1, { text: switchArray[4], delay: switchDelay, ease: Linear.easeNone })
-        .to(switchWrap, 1, { text: switchArray[5], delay: switchDelay, ease: Linear.easeNone });
+  [].forEach.call(skillEl, function(el) {
+    switchArray.push(el.innerHTML); // Each iteration is pushed to an array
+  });
 
-    // Add loaded class on page load
-    window.onload = function() {
-        document.body.classList.add("loaded");
-    };
-
-    // Add/Remove focus if tab pressed/Mouse clicked
-    document.addEventListener('keydown', function(e) {
-        if (e.keyCode === 9) {
-            document.body.classList.add("show-focus-outlines");
-        }
-    });
-
-    document.addEventListener('click', function(e) {
-        document.body.classList.remove("show-focus-outlines");
-    });
-
-    // Scroll to specific anchor
-    var $this;
-
-    function scrollTo(index) {
-        $this = $(this);
-        $this.on('click', function(event) {
-        console.log("index", index);
-            event.preventDefault();
-            TweenLite.to(window, 1, { scrollTo: { y: '#section-' + index, offsetY: 10 }, force3D: true });
-        });
+  const tlSwitch = new TimelineMax({
+    onComplete: function() {
+      this.restart();
     }
-    $('#menu > li > a').each(scrollTo);
+  });
+
+  tlSwitch.to(switchWrap, 0.75, {
+      text: switchArray[0],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    })
+    .to(switchWrap, 0.5, {
+      text: switchArray[1],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    })
+    .to(switchWrap, 1, {
+      text: switchArray[2],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    })
+    .to(switchWrap, 1.5, {
+      text: switchArray[3],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    })
+    .to(switchWrap, 1, {
+      text: switchArray[4],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    })
+    .to(switchWrap, 1, {
+      text: switchArray[5],
+      delay: switchDelay,
+      ease: Linear.easeNone
+    });
+
+  // Add loaded class on page load
+  window.onload = function() {
+    document.body.classList.add("loaded");
+  };
+
+  // Add/Remove focus if tab pressed/Mouse clicked
+  document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 9) {
+      document.body.classList.add("show-focus-outlines");
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    document.body.classList.remove("show-focus-outlines");
+  });
+
+  // Scroll to specific anchor
+  var $this;
+  var href;
+  var topY;
+
+  function scrollTo() {
+    $this = $(this);
+    var href = $this.attr("href");
+    var topY = $(href).offset().top;
+    $this.on('click', function(event) {
+      event.preventDefault();
+      TweenLite.to(window, 1, {
+        scrollTo: {
+          y: topY,
+          offsetY: 10
+        },
+        force3D: true
+      });
+    });
+  }
+  $('#menu > li > a').each(scrollTo);
+
+  window.onscroll = function(oEvent) {
+    // var mydivpos = document.getElementById("about").offsetTop;
+    var mydivpos = 10;
+    var scrollPos = window.pageYOffset;
+    if (scrollPos >= mydivpos) {
+      document.getElementById("home").classList.add('scrolled');
+    }
+    else {
+      document.getElementById("home").classList.remove('scrolled');
+    }
+  };
+  var mydivpos = 10;
+  var scrollPos = window.pageYOffset;
+  if (scrollPos >= mydivpos) {
+    document.getElementById("home").classList.add('scrolled');
+  }
+  else {
+    document.getElementById("home").classList.remove('scrolled');
+  }
 
 
-    // Page transitions
-    // Page flip
-    // let i = 0;
-    // let tlPageFlip = [];
-    // let content = [];
-    // let elContent = document.querySelectorAll('.content');
-    // let elContentArr = [];
-    // let elNav = [];
-    // let prevClick;
-    // // Loops through all menu items (equal to amount of sections/pages)
-    // for (let item of listItems) {
-    //     i++;
-    //     // Set-up tweens
-    //     elContentArr[i] = document.getElementById('content' + i);
-    //     tlPageFlip[i] = new TimelineLite({ paused: true });
-    //     tlPageFlip[i].to(elContentArr[i], 0.3, { x: '0' /*, onComplete: resetContent */ });
-    //     tlPageFlip[i].progress(1).progress(0);
+  // Page transitions
+  // Page flip
+  // let i = 0;
+  // let tlPageFlip = [];
+  // let content = [];
+  // let elContent = document.querySelectorAll('.content');
+  // let elContentArr = [];
+  // let elNav = [];
+  // let prevClick;
+  // // Loops through all menu items (equal to amount of sections/pages)
+  // for (let item of listItems) {
+  //     i++;
+  //     // Set-up tweens
+  //     elContentArr[i] = document.getElementById('content' + i);
+  //     tlPageFlip[i] = new TimelineLite({ paused: true });
+  //     tlPageFlip[i].to(elContentArr[i], 0.3, { x: '0' /*, onComplete: resetContent */ });
+  //     tlPageFlip[i].progress(1).progress(0);
 
-    //     // Self calling closure to (prevent overide of event listeners)
-    //     (function(i) {
-    //         document.getElementById('nav' + i).addEventListener('click', (event) => {
-    //             tlPageFlip[i].play();
-    //             console.log("tlPageFlip[i]", tlPageFlip[i]);
-    //         });
-    //     }(i));
-    // }
+  //     // Self calling closure to (prevent overide of event listeners)
+  //     (function(i) {
+  //         document.getElementById('nav' + i).addEventListener('click', (event) => {
+  //             tlPageFlip[i].play();
+  //             console.log("tlPageFlip[i]", tlPageFlip[i]);
+  //         });
+  //     }(i));
+  // }
 
 }());
 
 (function() {
-    // this anonymous function is sloppy...
+  // this anonymous function is sloppy...
 }());

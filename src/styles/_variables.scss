@@ -10,8 +10,11 @@ $shark: #1e1e20;
 $mineshaft: #252525;
 $capecod: #374140;
 
-$zmenuitemreset: 1;
-$zheader: 1;
-$zmenuitem: 2;
+$zBodyBefore: 1;
+$zSectionWithBg: 2;
+$zSection: 3;
+$zmenuitemreset: 4;
+$zheader: 4;
+$zmenuitem: 5;
 
-$bgSolidGradient: linear-gradient(to bottom, rgba($mineshaft,.975), rgba($mineshaft,.975) 100%);
+$bgSolidGradient: linear-gradient(to bottom, rgba($mineshaft,.9), rgba($mineshaft,.9) 100%);
