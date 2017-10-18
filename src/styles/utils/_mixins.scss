@@ -113,7 +113,7 @@
     position: relative;
 }
 
-// Tranisitions
+// Transitions
 @mixin anipop($delay: 0) {
     transition: transform .5s cubic-bezier(.18, -.25, .27, 1.95) $delay;
     transform: scale3d(.75, .75, .75);

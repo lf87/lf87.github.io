@@ -1,0 +1,16 @@
+.profile-shot {
+	// align-self: flex-end;
+    // border-radius: 50%;
+    float: right;
+    border: 1px solid $white;
+    max-width: 100px;
+    margin: 0 0 .75rem 1rem;
+    filter: grayscale(100%);
+    will-change: filter;
+    backface-visibility: hidden;
+    transition: .5s filter ease;
+    &:hover {
+    filter: grayscale(30%);
+
+    }
+}

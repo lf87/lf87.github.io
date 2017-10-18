@@ -1,0 +1,16 @@
+.home {
+    border-top: none;
+    padding-top: 3rem;
+    text-align: center;
+    height: 100vh;
+}
+
+.intro-copy {
+    @include font-size(22px);
+    font-weight: 500;
+    span {
+        color: $punch;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+}

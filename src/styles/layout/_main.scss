@@ -1,48 +1,10 @@
-html {
-    @include lato;
-    height: 100%; // background-image: url('https://lf87.github.io/dist/assets/img/sunset.jpg');
-    font-size: 16px;
-}
-
-body {
-    @include font-size(16px);
-    position: relative;
-    height: 100%;
-    color: $white;
-    text-shadow: -1px 1px 2px rgba($shark, .3), -1px 1px 1px rgba($shark, .5), 0 0 0 rgba($shark, .2);
-    &::before {
-      content: '';
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      height: 100vh;
-      width: 100%;
-      background-size: cover;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      background-position: right top;
-    }
-    @include bp-hxs {
-        @include font-size(15px);
-    }
-}
-
-main {
-    @include full-width;
-    overflow: hidden;
-}
-
-p {
-display: inline-block;
-}
-
-// Layout
-.content {
+.content,
+.home {
     @include full-width;
     z-index: $zSection;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
     padding: 3rem 1.5rem;
     text-align: left;
@@ -51,13 +13,14 @@ display: inline-block;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: right top;
-    &:first-of-type {
-        border-top: none;
-    }
-    &:first-of-type {
-        padding-top: 3rem;
-        text-align: center;
-        height: 100vh;
+}
+
+.content {
+    > * {
+        margin: 0 0 1.5em 0;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
     ul {
         padding: 0;
@@ -67,11 +30,20 @@ display: inline-block;
         list-style: disc;
         padding-left: 1rem;
     }
-    h1,h2,h3,h4,p{
-      margin-bottom: 1em;
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+        margin: 0 0 1em 0;
     }
-    h2,h3,h4 {
-      margin-top: 1em;
+    h2,
+    h3,
+    h4 {
+        margin-top: 1em;
+    }
+    h2:first-of-type {
+        margin-top: 0;
     }
 }
 
@@ -85,51 +57,29 @@ display: inline-block;
     font-weight: 700;
 }
 
-// Set positioning of all 5 sections
-// @for $i from 1 to 5 {
-//     section:nth-of-type(#{$i}) {
-//         top: $i * 100% - 100%;
-//     }
-// }
-
+// List of skills (added later by JS)
 #skill-switch-list {
     @include visually-hidden;
 }
 
-.intro-copy {
-    @include font-size(22px);
-    font-weight: 500;
-
-    span {
-        color: $punch;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
-}
-
+// Image "pop" effect
 .loaded .logo,
 .loaded .intro-copy {
     transform: scale3d(1, 1, 1);
 }
 
-// Sections
+// Background images
 body::before {
-    background-image:  $bgSolidGradient, url('https://images.unsplash.com/photo-1498642145410-c61aa8483bcb?dpr=1&auto=compress,format&fit=crop&w=1490&h=&q=80&cs=tinysrgb&crop=');
+    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1498642145410-c61aa8483bcb?dpr=1&auto=compress,format&fit=crop&w=1490&h=&q=80&cs=tinysrgb&crop=');
     z-index: $zBodyBefore;
 }
+
 .about {
-    background-image:  $bgSolidGradient, url('https://images.unsplash.com/photo-1498622601663-8277ceda5cb6?dpr=1&auto=compress,format&fit=crop&w=1091&h=&q=80&cs=tinysrgb&crop=');
+    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1498622601663-8277ceda5cb6?dpr=1&auto=compress,format&fit=crop&w=1091&h=&q=80&cs=tinysrgb&crop=');
     z-index: $zSectionWithBg;
 }
-// .skills::before {
-//     background-image:  $bgSolidGradient, url('https://images.unsplash.com/photo-1489506020498-e6c1cc350f10?dpr=1.25&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=');
-//     z-index: -3;
-// }
+
 .code {
-    background-image:  $bgSolidGradient, url('https://images.unsplash.com/photo-1495214783159-3503fd1b572d?dpr=1&auto=compress,format&fit=crop&w=1350&h=&q=80&cs=tinysrgb&crop=');
+    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1495214783159-3503fd1b572d?dpr=1&auto=compress,format&fit=crop&w=1350&h=&q=80&cs=tinysrgb&crop=');
     z-index: $zSectionWithBg;
 }
-// .work::before {
-//     background-image:  $bgSolidGradient, url('https://images.unsplash.com/photo-1498642145410-c61aa8483bcb?dpr=1&auto=compress,format&fit=crop&w=1490&h=&q=80&cs=tinysrgb&crop=');
-//     z-index: -5;
-// }
