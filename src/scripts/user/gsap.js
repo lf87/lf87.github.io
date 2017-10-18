@@ -1,82 +1,108 @@
 /*jshint strict: false */
 
 (function() {
-  'use strict';
+    'use strict';
+    //////////////////////
+    // GSAP Text Plugin //
+    //////////////////////
 
-  // GSAP Text Plugin - Variables
-  const switchWrap = document.getElementById('skill-switch');
-  let skillEl = document.querySelectorAll('#skill-switch-list li');
-  let switchDelay = 1.5;
-  let switchArray = [];
+    function gsapTextPlugin() {
 
-  // GSAP Text Plugin - Push each iteration to array
-  [].forEach.call(skillEl, function(el) {
-    switchArray.push(el.innerHTML);
-  });
+        // Variables
+        const elSkillSwitch = document.getElementById('skill-switch');
+        let elSkillSwitchListLi = document.querySelectorAll('#skill-switch-list li');
+        let switchDelay = 1.5;
+        let switchArray = [];
+        let text;
+        let textLength;
+        let duration;
 
-  // GSAP Text Plugin - Create timeline
-  const tlSwitch = new TimelineMax({
-    onComplete: function() {
-      this.restart();
+        // Create timeline
+        const tlSwitch = new TimelineMax({
+            onComplete: function() {
+                this.restart();
+            }
+        });
+
+        // Loop through skill switch list and push each iteration to array
+        [].forEach.call(elSkillSwitchListLi, function(el) {
+            switchArray.push(el.innerHTML);
+
+            // Get inner text length and divide by 10 to use as tween duration
+            text = el.innerText;
+            textLength = parseInt(text.trim().length);
+            duration = textLength / 10;
+
+            // Set Minmum duration of 1
+            if (duration < 1) {
+                duration = 1;
+            }
+
+            // Set-up tweens
+            tlSwitch.to(elSkillSwitch, duration, {
+                text: text,
+                delay: switchDelay,
+                ease: Linear.easeNone
+            });
+        });
     }
-  });
 
-  // GSAP Text Plugin - Tweens
-  tlSwitch.to(switchWrap, 0.75, {
-      text: switchArray[0],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 0.5, {
-      text: switchArray[1],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[2],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1.5, {
-      text: switchArray[3],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[4],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    })
-    .to(switchWrap, 1, {
-      text: switchArray[5],
-      delay: switchDelay,
-      ease: Linear.easeNone
-    });
+    //////////////////////////
+    // Gsap ScrollTo Plugin //
+    //////////////////////////
 
-  // Gsap ScrollTo Plugin - Smooth Scroll to location of href
-  function scrollTo(anchor) {
-    let topY = anchor.offsetTop;
-    event.preventDefault();
-    TweenLite.to(window, 1, {
-      scrollTo: {
-        y: topY,
-        offsetY: 10
-      },
-      force3D: true
-    });
-  }
+    function gsapScrollToPlugin() {
 
-  // Gsap ScrollTo - Pass anchor value in to scrollTo function, for each '.scroll-to' link
-  let scrollToggle = document.querySelectorAll('.scroll-to');
-  [].forEach.call(scrollToggle, function(toggle) {
-    toggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      let dataID = toggle.getAttribute('href');
-      let dataTarget = document.querySelector(dataID);
-      if (dataTarget) {
-        scrollTo(dataTarget);
-      }
-    }, false);
-  });
+        // Variables
+        let scrollToggle = document.querySelectorAll('.scroll-to');
+        let topY;
+        let dataID;
+        let dataTarget;
+
+        // Smooth Scroll to location of href
+        function scrollTo(anchor) {
+            event.preventDefault();
+
+            // Get offset from top of anchor point
+            topY = anchor.offsetTop;
+
+            // Tween to anchor point
+            TweenLite.to(window, 1, {
+                scrollTo: {
+                    y: topY,
+                    offsetY: 10
+                },
+                force3D: true
+            });
+        }
+
+        // Pass anchor value in to scrollTo function, for each '.scroll-to' link
+        [].forEach.call(scrollToggle, function(toggle) {
+
+            // Add click event listener
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get href attribute
+                dataID = toggle.getAttribute('href');
+                console.log("dataID", dataID);
+
+                // Store each element for later usage
+                dataTarget = document.querySelector(dataID);
+                console.log("dataTarget", dataTarget);
+
+                // If it exists then pass value in to the scrollTo function
+                if (dataTarget) {
+                    scrollTo(dataTarget);
+                }
+            }, false);
+        });
+    }
+
+    ///////////////////
+    // Run Functions //
+    ///////////////////
+    gsapTextPlugin();
+    gsapScrollToPlugin();
 
 }());
