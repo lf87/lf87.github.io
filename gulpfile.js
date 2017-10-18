@@ -75,14 +75,13 @@
         });
         browserSync.init({
             server: dist.pages,
-            // proxy: 'proxy.dev',
             files: dist.css + '*.css'
         });
     });
 
 
     // Disable or enable pop up notifications
-    var notifications = false;
+    var notifications = true;
     if (notifications) {
         process.env.DISABLE_NOTIFIER = true; // Uncomment to disables all notifications
     }
@@ -123,7 +122,7 @@
             }))
             // FROM HERE:
             .pipe(autoprefixer({
-                browsers: ['last 2 versions', 'ie 6-10'],
+                browsers: ['last 6 versions', 'ie 6-10'],
                 cascade: false
             }))
             .pipe(config.production ? cleanCSS({ debug: true }, function(details) {
@@ -210,9 +209,6 @@
                 progressive: true,
                 interlaced: true
             }))
-            .pipe(gulpPngquant({
-                quality: '65-80'
-            }))
             .pipe(gulp.dest(dist.img))
             .pipe(browserSync.stream({ once: true }))
     });
@@ -262,7 +258,7 @@
             gulp.watch(src.scss, ['scss']);
             gulp.watch(src.js, ['scripts']);
             gulp.watch(src.img, ['images']);
-            gulp.watch(src.img, ['images-png']);
+            gulp.watch(src.imgPng, ['images-png']);
             gulp.watch(src.svg, ['svgs']);
             gulp.watch(src.fonts, ['fonts']);
             gulp.watch(src.favicons, ['favicons']);
