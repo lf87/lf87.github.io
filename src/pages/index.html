@@ -1,79 +1,8 @@
-{% extends "layout.html" %} {% block content %}
-<div class="back-to-top-dummy active">
-  <span></span>
-</div>
-<!-- Home -->
-<section id="home" class="content home">
-  <div class="logo">
-    <svg viewBox="0 0 478 431.6" xmlns="http://www.w3.org/2000/svg">
-            <path class="logo-l1" d="M102 99.8 239 0 0 174v216.7l239 40.8V271.1l-137 22.4z" id="XMLID_11_" />
-            <path class="logo-f1" d="M239 102.5V0L102 99.8v193.7l68.5-11.2v-66.5l68.5-22.3v-55.1l-68.5 30.1v-30.7z" id="XMLID_10_" />
-            <path class="logo-l2" d="M376 99.8 239 .1l239 174v216.7l-239 40.8V271.2l137 22.4z" id="XMLID_9_" />
-            <path class="logo-f2" d="M239 102.6V.1l137 99.7v193.8l-68.5-11.2v-66.6L239 193.5v-55l68.5 30.1v-30.8z" id="XMLID_8_" />
-        </svg>
-    <span>Luke Fryer<br> Front End Developer</span>
-  </div>
-  <h1 class="intro-copy">A meticulous web developer from Leeds with a passion for<br><span id="skill-switch">Automation</span></h1></a>
-  <ul id="skill-switch-list">
-    <li>HTML5</li>
-    <li>CSS3</li>
-    <li>JavaScript</li>
-    <li>Responsive Web Design</li>
-    <li>Web Standards</li>
-    <li>Automation</li>
-  </ul>
-</section>
-<!-- About -->
-<section id="about" class="content about">
-  <h2 class="section-heading">About Me</h2>
-  <p>Passionate about Front End Web Development, with 4 years of industry experience. Always on top of the latest front end technologies, whilst applying them to my work to produce high performing, visually pleasing websites. Have produced work for many
-    high profile clients such as - Walmart,
-    <wbr>Asda, 188Bet, Coral, Co-op, and Jet2.</p>
-  <p>Put some of my hobbies etc. here</p>
-</section>
-<!-- Skills -->
-<section id="skills" class="content skills">
-  <h2 class="section-heading">Skills - Web Development</h2>
-  <ul>
-    <li>Responsive Web Development</li>
-    <li>Workflow automation</li>
-    <li>Cross-browser Compatibility</li>
-    <li>SEO and Semantic code</li>
-    <li>Mobile first</li>
-    <li>Standards Compliance</li>
-    <li>HTML5 Canvas</li>
-    <li>Site optimisation</li>
-    <li>HTML Emails</li>
-    <li>IE7+ Compatibility</li>
-  </ul>
-  <h2 class="section-heading">CMS/CRM</h2>
-  <ul>
-    <li>Wordpress - Installation and theme development</li>
-    <li>Ektron CMS400 (Certified Administrator)</li>
-    <li>Oracle Responsys</li>
-    <li>Dotmailer</li>
-  </ul>
-  <h2 class="section-heading">Web Stack</h2>
-  <ul>
-    <li>HTML5</li>
-    <li>CSS3</li>
-    <li>jQuery</li>
-    <li>SASS</li>
-    <li>JavaScript</li>
-    <li>Gulp</li>
-    <li>Vue.js</li>
-    <li>GSAP</li>
-  </ul>
-</section>
-<!-- Code -->
-<section id="code" class="content code">
-  <h2 class="large-heading">Code</h2>
-  <p>Code</p>
-</section>
-<!-- Work -->
-<section id="work" class="content work">
-  <h2 class="large-heading">Work</h2>
-  <p>Code</p>
-</section>
-<!-- {% include "partials/partial.html" %} -->
+{% extends "layout.html" %}
+{% block content %}
+{% include "partials/home.html" %}
+{% include "partials/about.html" %}
+{% include "partials/skills.html" %}
+{% include "partials/code.html" %}
+{% include "partials/work.html" %}
 {% endblock %}
