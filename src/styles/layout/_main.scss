@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    padding: 3rem 1.5rem;
+    padding: 3.5rem 1.5rem;
     text-align: left;
     border-top: 1px solid $white;
     background-size: cover;
@@ -16,8 +16,8 @@
 }
 
 .content {
-    > * {
-        margin: 0 0 1.5em 0;
+    >* {
+        margin-bottom: 1.5em;
         &:last-child {
             margin-bottom: 0;
         }
@@ -35,26 +35,53 @@
     h3,
     h4,
     p {
-        margin: 0 0 1em 0;
+        margin-bottom: 1em;
     }
     h2,
     h3,
     h4 {
-        margin-top: 1em;
+        color: $punch;
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 1em;
+        font-weight: 700;
     }
     h2:first-of-type {
         margin-top: 0;
     }
+    h2 {
+        @include font-size(23px);
+    }
+    h3 {
+        @include font-size(18px);
+        color: lighten($punch, 10%);
+    }
+    h4 {
+        @include font-size(16px);
+        color: lighten($punch, 20%);
+    }
+    a {
+        text-decoration: underline;
+        color: $white;
+    }
+    header {
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
-.section-heading {
-    @include font-size(18px);
-    color: $punch;
-    display: inline-block;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 1em;
-    font-weight: 700;
+.content-child {
+    @include full-width;
+    border-bottom: 1px dotted $white;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    &:last-of-type {
+        border: none;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
 }
 
 // List of skills (added later by JS)
