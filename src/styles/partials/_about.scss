@@ -1,16 +1,29 @@
 .profile-shot {
-	// align-self: flex-end;
+    // align-self: flex-end;
     // border-radius: 50%;
+    position: relative;
     float: right;
     border: 1px solid $white;
-    max-width: 100px;
     margin: 0 0 .75rem 1rem;
-    filter: grayscale(100%);
-    will-change: filter;
-    backface-visibility: hidden;
-    transition: .5s filter ease;
-    &:hover {
-    filter: grayscale(30%);
-
+    width: 98px;
+    height: 174px;
+    img {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        filter: grayscale(100%);
+        will-change: filter, opacity;
+        backface-visibility: hidden;
+        transition: .5s filter ease, .5s opacity ease;
+    }
+    &:hover img {
+        filter: grayscale(30%);
+    }
+    &:first-of-type img {
+        &:hover {
+            opacity: 0;
+            filter: grayscale(30%);
+        }
     }
 }
