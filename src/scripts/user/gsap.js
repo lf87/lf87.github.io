@@ -1,5 +1,3 @@
-/*jshint strict: false */
-
 (function() {
     'use strict';
     //////////////////////
