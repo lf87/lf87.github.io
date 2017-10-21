@@ -136,6 +136,7 @@
     a {
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 0 12px;
         height: 100%;
         &::after {
@@ -152,7 +153,7 @@
         &::after,
         &::before {
             content: '';
-            top: -1px;
+            top: -2px;
             right: calc(50% - 7px);
             transform: rotate(45deg);
             position: absolute;
