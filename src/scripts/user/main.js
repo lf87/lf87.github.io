@@ -59,52 +59,44 @@
     // Back to top button //
     ////////////////////////
     // Variables
+    const backToTop = document.getElementById('back-to-top');
     let scrollY;
     let scrollPos;
-    const backToTop = document.getElementById('back-to-top');
+    const section = document.querySelectorAll(".content, .home");
+    let sections = {};
+    let i = 0;
 
-    // Add class to '#home' when window scrolled beyond 10px
+    //  Get offset from top of each '.content' section
+    Array.prototype.forEach.call(section, function (e) {
+        sections[e.id] = e.offsetTop;
+    });
+
+    // Run scroll function every x milliseconds
     let addClassOnScroll = debounce(function () {
         scrollY = 10;
         scrollPos = window.pageYOffset;
+        // Add class to '#home' when window scrolled beyond 10px
         if (scrollPos >= scrollY) {
             backToTop.classList.add('scrolled');
         } else {
             backToTop.classList.remove('scrolled');
         }
-    }, 100);
-
-
-
-    /////////////////////////////////////////////////////
-    // Add class to menu items when section is visible //
-    /////////////////////////////////////////////////////
-    let section = document.querySelectorAll(".content");
-    let sections = {};
-    let i = 0;
-
-    Array.prototype.forEach.call(section, function (e) {
-        sections[e.id] = e.offsetTop;
-    });
-    let addClassToSectionOnScroll = debounce(function () {
-        var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-
+        // Add class to each section's menu item, when visible
         for (i in sections) {
-            if (sections[i] <= scrollPosition) {
-                document.querySelector('.active').classList.remove('active');
-                document.querySelector('a[href*=' + i + ']').parentNode.classList.add('active');
+            if (sections[i] <= scrollPos) {
+                document.querySelector('#menu > li.active').classList.remove('active');
+                document.querySelector('.scroll-to[href*=' + i + ']').parentNode.classList.add('active');
             }
         }
-    }, 50);
-
+    }, 100);
 
     /////////////////////
     // Event Listeners //
     /////////////////////
+
     // Scroll
     window.addEventListener('scroll', function () {
         addClassOnScroll();
-        addClassToSectionOnScroll();
     });
 
     // Add focus class upon tab key press
