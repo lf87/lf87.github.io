@@ -83,11 +83,9 @@
 
                 // Get href attribute
                 dataID = toggle.getAttribute('href');
-                console.log("dataID", dataID);
 
                 // Store each element for later usage
                 dataTarget = document.querySelector(dataID);
-                console.log("dataTarget", dataTarget);
 
                 // If it exists then pass value in to the scrollTo function
                 if (dataTarget) {
