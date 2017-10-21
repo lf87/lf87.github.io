@@ -23,7 +23,7 @@
         });
 
         // Loop through skill switch list and push each iteration to array
-        [].forEach.call(elSkillSwitchListLi, function(el) {
+        Array.prototype.forEach.call(elSkillSwitchListLi, function(el) {
             switchArray.push(el.innerHTML);
 
             // Get inner text length and divide by 10 to use as tween duration
@@ -75,7 +75,7 @@
         }
 
         // Pass anchor value in to scrollTo function, for each '.scroll-to' link
-        [].forEach.call(scrollToggle, function(toggle) {
+        Array.prototype.forEach.call(scrollToggle, function(toggle) {
 
             // Add click event listener
             toggle.addEventListener('click', function(e) {
