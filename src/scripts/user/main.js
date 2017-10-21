@@ -68,11 +68,12 @@
 
     //  Get offset from top of each '.content' section
     Array.prototype.forEach.call(section, function (e) {
-        sections[e.id] = e.offsetTop;
+        sections[e.id] = e.offsetTop - 44;
     });
 
     // Run scroll function every x milliseconds
     let addClassOnScroll = debounce(function () {
+        console.log("in");
         scrollY = 10;
         scrollPos = window.pageYOffset;
         // Add class to '#home' when window scrolled beyond 10px
@@ -88,7 +89,7 @@
                 document.querySelector('.scroll-to[href*=' + i + ']').parentNode.classList.add('active');
             }
         }
-    }, 100);
+    }, 200);
 
     /////////////////////
     // Event Listeners //
