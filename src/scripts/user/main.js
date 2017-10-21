@@ -73,7 +73,6 @@
 
     // Run scroll function every x milliseconds
     let addClassOnScroll = debounce(function () {
-        console.log("in");
         scrollY = 10;
         scrollPos = window.pageYOffset;
         // Add class to '#home' when window scrolled beyond 10px
