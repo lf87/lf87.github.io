@@ -7,6 +7,7 @@
 
 .intro-copy {
     @include font-size(22px);
+    width: 100%;
     font-weight: 500;
     span {
         color: $punch;
