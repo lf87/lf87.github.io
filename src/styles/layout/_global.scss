@@ -1,11 +1,11 @@
 html {
     @include lato;
     height: 100%; // background-image: url('https://lf87.github.io/dist/assets/img/sunset.jpg');
-    font-size: 16px;
+    @include font-size(15px);
 }
 
 body {
-    @include font-size(16px);
+    @include font-size(15px);
     position: relative;
     height: 100%;
     color: $white;
