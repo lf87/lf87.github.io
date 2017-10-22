@@ -34,14 +34,14 @@
         };
     }
 
-    //////////
-    // Menu //
-    //////////
+    ////////////////////////
+    // Add active classes //
+    ////////////////////////
 
-    function menu() {
+    function addRemoveActiveClasses() {
 
-        // Add and remove classes upon click
-        const handleClick = (e) => {
+        // Add and remove classes to each '#menu li'
+        const handleClickMenu = (e) => {
             e.preventDefault();
             elMenuLi.forEach(node => {
                 node.classList.remove('active');
@@ -51,7 +51,36 @@
 
         //  Add event listener to each '#menu li'
         elMenuLi.forEach(node => {
-            node.addEventListener('click', handleClick);
+            node.addEventListener('click', handleClickMenu);
+        });
+        
+        // Add and remove classes to each next sibling of '.content-screenshot'
+        const handleClickScreenshot = (e) => {
+            e.preventDefault();
+            elContentScreenshot.forEach(node => {
+                node.nextElementSibling.classList.remove('active');
+            });
+            e.currentTarget.nextElementSibling.classList.add('active');
+        };
+        
+        //  Add event listener to each '.content-screenshot'
+        let elContentScreenshot = Array.from(document.querySelectorAll('.content-screenshot'));
+    
+        elContentScreenshot.forEach(node => {
+            node.addEventListener('click', handleClickScreenshot);
+        });
+
+        // Add and remove classes for parent of each '.content-overlay-close'
+        const handleClickCloseScreenshot = (e) => {
+            e.preventDefault();
+            e.currentTarget.parentNode.classList.remove('active');
+        };
+        
+        //  Add event listener to each '.content-overlay-close'
+        let elContentOverlayClose = Array.from(document.querySelectorAll('.content-overlay-close'));
+    
+        elContentOverlayClose.forEach(node => {
+            node.addEventListener('click', handleClickCloseScreenshot);
         });
     }
 
@@ -125,6 +154,6 @@
     // Run Functions //
     ///////////////////
     misc();
-    menu();
+    addRemoveActiveClasses();
 
 }());
