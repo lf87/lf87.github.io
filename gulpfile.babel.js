@@ -79,10 +79,7 @@
         browserSync.init({
             server: dist.pages,
             // proxy: 'taveners.dev',
-            files: dist.css + '*.css',
-            watchOptions: {
-                awaitWriteFinish: true
-            }
+            files: dist.css + '*.css'
         });
     });
 
