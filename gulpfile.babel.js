@@ -8,6 +8,7 @@
         gulpPngquant = require('gulp-pngquant'), // Optmise PNGs
         sourcemaps = require('gulp-sourcemaps'), // Line numbers pointing to your SCSS files
         runSequence = require('run-sequence'), // Run tasks sequentially
+        critical = require('critical').stream, // Inlines above the fold CSS
         cleanCSS = require('gulp-clean-css'), // Refactors CSS and combines MQs (Prod only)
         scsslint = require('gulp-scss-lint'), // SCSS Linting
         stylish = require('jshint-stylish'), // Style your jshint results
@@ -22,6 +23,7 @@
         svgmin = require('gulp-svgmin'), // Minimises SVGs
         newer = require('gulp-newer'), // A Gulp plugin for passing through only those source files that are newer than corresponding destination files.
         babel = require('gulp-babel'), // ALlows for ES2015 support with this build system
+        gutil = require('gulp-util'), // Used for debugging
         scss = require('gulp-sass'), // Libscss Pre-processor
         util = require('gulp-util'), // Used for prod deployment
         gulp = require('gulp'), // Gulp
@@ -61,11 +63,12 @@
     var config = {
         maps: 'maps', // This is where your CSS and JS sourcemaps go
         reports: 'reports', // Lint reports go here
-        lint: 'src/styles/*/**.scss', // Path of SCSS files that you want to lint
-        lintExclude: '!src/styles/vendors/*.scss', // Path of SCSS files that you want to exclude from lint
+        lint: 'src/styles/**/*.scss', // Path of SCSS files that you want to lint
+        lintExclude: '!src/styles/vendor/**/*.scss', // Path of SCSS files that you want to exclude from lint
         templates: 'src/templates/',
-        pagesWatch: './*/**' + fileExt, // Directory where pages are output (Not sure why this glob pattern works)
-        production: !!util.env.production // Used for prod deployment
+        pagesWatch: './**/*' + fileExt, // Directory where pages are output (Not sure why this glob pattern works)
+        production: !!util.env.production, // DON'T CHANGE - Used for prod deployment
+        criticalCss: dist.css + '/style.css' // Add multiple stylesheets like so - [dist.css + '/components.css', dist.css + '/main.css']
     };
 
     // Browser Sync with code/HTML injection
@@ -75,13 +78,17 @@
         });
         browserSync.init({
             server: dist.pages,
-            files: dist.css + '*.css'
+            // proxy: 'taveners.dev',
+            files: dist.css + '*.css',
+            watchOptions: {
+                awaitWriteFinish: true
+            }
         });
     });
 
 
     // Disable or enable pop up notifications
-    var notifications = true;
+    var notifications = false;
     if (notifications) {
         process.env.DISABLE_NOTIFIER = true; // Uncomment to disables all notifications
     }
@@ -98,7 +105,7 @@
 
     // $ scss-lint - SCSS Linter
     gulp.task('scss-lint', function() {
-        return gulp.src([config.lint + ', ' + config.lintExclude])
+        return gulp.src([config.lint, config.lintExclude])
             .pipe(scsslint({
                 'reporterOutputFormat': 'Checkstyle',
                 'filePipeOutput': 'scssReport.xml',
@@ -122,7 +129,7 @@
             }))
             // FROM HERE:
             .pipe(autoprefixer({
-                browsers: ['last 6 versions', 'ie 6-10'],
+                browsers: ['last 2 versions', 'ie 6-10'],
                 cascade: false
             }))
             .pipe(config.production ? cleanCSS({ debug: true }, function(details) {
@@ -204,6 +211,7 @@
     // Save for web in PS first!
     gulp.task('images', function() {
         return gulp.src(src.img)
+            .pipe(changed(dist.img, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(imagemin({
                 optimizationLevel: 7,
                 progressive: true,
@@ -215,6 +223,7 @@
 
     gulp.task('images-png', function() {
         return gulp.src(src.imgPng)
+            .pipe(changed(dist.img, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(gulpPngquant({
                 quality: '65-80'
             }))
@@ -224,6 +233,7 @@
 
     gulp.task('svgs', function() {
         return gulp.src(src.svg)
+            .pipe(changed(dist.svg, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(svgmin())
             .pipe(gulp.dest(dist.svg))
             .pipe(browserSync.stream({ once: true }))
@@ -231,21 +241,37 @@
 
     gulp.task('fonts', function() {
         return gulp.src(src.fonts)
+            .pipe(changed(dist.fonts, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(fontmin())
             .pipe(gulp.dest(dist.fonts))
             .pipe(browserSync.stream({ once: true }))
     });
 
     gulp.task('docs', function() {
-        return gulp.src(src.docs)
+        return gulp.src(dist.docs)
+            .pipe(changed(dist.docs, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(gulp.dest(dist.docs))
             .pipe(browserSync.stream({ once: true }))
     });
 
     gulp.task('favicons', function() {
-        return gulp.src(src.favicons)
+        return gulp.src(dist.favicons)
+            .pipe(changed(dist.favicons, { hasChanged: changed.compareLastModifiedTime }))
             .pipe(gulp.dest(dist.favicons))
             .pipe(browserSync.stream({ once: true }))
+    });
+    // Generate & Inline Critical-path CSS
+    gulp.task('critical', function() {
+        return gulp.src(dist.pages + '/*' + fileExt)
+            .pipe(critical({
+                base: dist.pages,
+                inline: true,
+                css: config.criticalCss,
+                width: 1300,
+                height: 900
+            }))
+            .on('error', function(err) { gutil.log(gutil.colors.red(err.message)); })
+            .pipe(gulp.dest(dist.pages));
     });
 
 
