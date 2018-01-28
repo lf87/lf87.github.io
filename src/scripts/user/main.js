@@ -53,19 +53,21 @@
         elMenuLi.forEach(node => {
             node.addEventListener('click', handleClickMenu);
         });
-        
+
         // Add and remove classes to each next sibling of '.content-screenshot'
         const handleClickScreenshot = (e) => {
             e.preventDefault();
             elContentScreenshot.forEach(node => {
-                node.nextElementSibling.classList.remove('active');
+                node.classList.remove('active');
             });
-            e.currentTarget.nextElementSibling.classList.add('active');
+            // e.addEventListener('transitionend', function (event) {
+                e.currentTarget.classList.add('active');
+            // });
         };
-        
+
         //  Add event listener to each '.content-screenshot'
         let elContentScreenshot = Array.from(document.querySelectorAll('.content-screenshot'));
-    
+
         elContentScreenshot.forEach(node => {
             node.addEventListener('click', handleClickScreenshot);
         });
@@ -75,10 +77,10 @@
             e.preventDefault();
             e.currentTarget.parentNode.classList.remove('active');
         };
-        
+
         //  Add event listener to each '.content-overlay-close'
         let elContentOverlayClose = Array.from(document.querySelectorAll('.content-overlay-close'));
-    
+
         elContentOverlayClose.forEach(node => {
             node.addEventListener('click', handleClickCloseScreenshot);
         });

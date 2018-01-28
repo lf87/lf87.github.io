@@ -9,16 +9,25 @@
     float: left;
     position: relative;
     width: 100%;
-    overflow: hidden;
     display: flex;
     flex: 1;
-    margin-bottom: 2.5rem;
+    &.active {
+        .content-screenshot-crop {
+            img {
+                opacity: 0;
+            }
+        }
+        .content-description {
+            transform: translate3d(0, 90%, 0);
+            opacity: 1;
+        }
+    }
+    &.active,
+    &:active,
     &:hover {
         .content-screenshot-text {
             opacity: 1;
-        }
-        img {
-            // opacity: .1;
+            mix-blend-mode: normal;
         }
         h4,
         span {
@@ -35,6 +44,7 @@
         float: left;
         position: relative;
         overflow: hidden;
+        z-index: 2;
         img {
             display: block;
             backface-visibility: hidden;
@@ -59,15 +69,48 @@
     }
 }
 
+.content-description {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    padding-top: 10%;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    background-color: $shark;
+    z-index: 1; // flex: 1;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    transition: transform .5s $ease-out-back, opacity .5s $ease-out-back;
+}
+
+.content-description-close {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: .5em;
+    background-color: $shark;
+    z-index: 5;
+}
+
+// CREATE VARIABLES FOR ZINDEX, ANIMATE THE ARROW TO POINT DOWN, FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
+
 .content-screenshot-text {
+    z-index: 2;
+    overflow: hidden;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
+    padding-top: 45px;
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1;
     flex-direction: column;
     backface-visibility: hidden;
@@ -103,7 +146,7 @@
     display: block;
     position: relative;
     div {
-        opacity: 0;
+        // opacity: 0;
         backface-visibility: hidden;
         will-change: transform;
         transform: scale3d(0, 0, 0);
