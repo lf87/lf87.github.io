@@ -1,7 +1,7 @@
 .content,
 .home {
     @include full-width;
-    z-index: $zSection;
+    z-index: $z-content-and-home;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -107,16 +107,16 @@
 
 // Background images
 body::before {
-    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1498642145410-c61aa8483bcb?dpr=1&auto=compress,format&fit=crop&w=1490&h=&q=80&cs=tinysrgb&crop=');
-    z-index: $zBodyBefore;
+    background-image: $bg-solid-gradient, url('https://images.unsplash.com/photo-1498642145410-c61aa8483bcb?dpr=1&auto=compress,format&fit=crop&w=1490&h=&q=80&cs=tinysrgb&crop=');
+    z-index: $z-body-before;
 }
 
 .about {
-    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1498622601663-8277ceda5cb6?dpr=1&auto=compress,format&fit=crop&w=1091&h=&q=80&cs=tinysrgb&crop=');
-    z-index: $zSectionWithBg;
+    background-image: $bg-solid-gradient, url('https://images.unsplash.com/photo-1498622601663-8277ceda5cb6?dpr=1&auto=compress,format&fit=crop&w=1091&h=&q=80&cs=tinysrgb&crop=');
+    z-index: $z-section-with-bg;
 }
 
 .code {
-    background-image: $bgSolidGradient, url('https://images.unsplash.com/photo-1495214783159-3503fd1b572d?dpr=1&auto=compress,format&fit=crop&w=1350&h=&q=80&cs=tinysrgb&crop=');
-    z-index: $zSectionWithBg;
+    background-image: $bg-solid-gradient, url('https://images.unsplash.com/photo-1495214783159-3503fd1b572d?dpr=1&auto=compress,format&fit=crop&w=1350&h=&q=80&cs=tinysrgb&crop=');
+    z-index: $z-section-with-bg;
 }

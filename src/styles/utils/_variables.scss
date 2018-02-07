@@ -8,12 +8,22 @@ $punch: #dc3522;
 $shark: #1e1e20;
 $mineshaft: #252525;
 $capecod: #374140;
-$zBodyBefore: 1;
-$zSectionWithBg: 2;
-$zSection: 3;
-$zmenuitemreset: 4;
-$zheader: 4;
-$zmenuitem: 5;
-$bgSolidGradient: linear-gradient(to bottom, rgba($mineshaft, .925), rgba($mineshaft, .925) 100%);
+
+$bg-solid-gradient: linear-gradient(to bottom, rgba($mineshaft, .925), rgba($mineshaft, .925) 100%);
 $ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 $ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+// Z-index
+$z-body-before: 1;
+$z-section-with-bg: 2;
+$z-content-and-home: 3;
+$z-menu-item-reset: 4;
+$z-header: 7;
+$z-menu-item: 5;
+$z-work-description-close: 5;
+$z-work-description: 1;
+$z-work-screenshot-text: 2;
+$z-work-screenshot-crop: 2; 
+$z-work: 6;
+$z-overlay: 5;
+$z-work-screenshot-active: 6;

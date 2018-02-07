@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: $zheader;
+    z-index: $z-header;
     &::before {
         display: none;
         content: '';
@@ -38,7 +38,7 @@
         height: 1px;
     }
     li {
-        z-index: $zmenuitem;
+        z-index: $z-menu-item;
         a {
             @include font-size(13px, 19px);
             padding: 0.85em 6px;
@@ -89,7 +89,7 @@
         .slide-icon {
           opacity: 1;
             transform: translate3d(0, 0, 0);
-            z-index: $zmenuitemreset;
+            z-index: $z-menu-item-reset;
             color: $punch;
             display: inline-block;
             text-align: left; //@include font-size(22px);

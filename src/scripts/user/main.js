@@ -4,6 +4,7 @@
     // "Global" Variables //
     ////////////////////////
     const elMenu = document.getElementById('menu');
+    const elOverlay = document.getElementById('overlay');
     let elMenuLi = Array.from(elMenu.getElementsByTagName('li'));
 
     /////////////////////////////
@@ -54,36 +55,43 @@
             node.addEventListener('click', handleClickMenu);
         });
 
-        // Add and remove classes to each next sibling of '.content-screenshot'
+        // Add classes to '.work-screenshot'
         const handleClickScreenshot = (e) => {
             e.preventDefault();
-            elContentScreenshot.forEach(node => {
-                node.classList.remove('active');
-            });
-            // e.addEventListener('transitionend', function (event) {
-                e.currentTarget.classList.add('active');
+            // elWorkScreenshot.forEach(node => {
+            //     node.classList.remove('active');
             // });
+            e.currentTarget.classList.toggle('active');
+            elOverlay.classList.toggle('active');
         };
-
-        //  Add event listener to each '.content-screenshot'
-        let elContentScreenshot = Array.from(document.querySelectorAll('.content-screenshot'));
-
-        elContentScreenshot.forEach(node => {
-            node.addEventListener('click', handleClickScreenshot);
-        });
-
-        // Add and remove classes for parent of each '.content-overlay-close'
-        const handleClickCloseScreenshot = (e) => {
+        
+        // Remove classes from '.work-screenshot'
+        const handleMouseOutScreenshot = (e) => {
             e.preventDefault();
-            e.currentTarget.parentNode.classList.remove('active');
+            e.currentTarget.classList.remove('active');
+            elOverlay.classList.remove('active');
         };
 
-        //  Add event listener to each '.content-overlay-close'
-        let elContentOverlayClose = Array.from(document.querySelectorAll('.content-overlay-close'));
+        //  Add event listener to each '.work-screenshot'
+        let elWorkScreenshot = Array.from(document.querySelectorAll('.work-screenshot'));
 
-        elContentOverlayClose.forEach(node => {
-            node.addEventListener('click', handleClickCloseScreenshot);
+        elWorkScreenshot.forEach(node => {
+            node.addEventListener('click', handleClickScreenshot);
+            node.addEventListener('mouseleave', handleMouseOutScreenshot);
         });
+
+        // // Add and remove classes for parent of each '.work-overlay-close'
+        // const handleClickCloseScreenshot = (e) => {
+        //     e.preventDefault();
+        //     e.currentTarget.parentNode.classList.remove('active');
+        // };
+
+        // //  Add event listener to each '.work-overlay-close'
+        // let elWorkOverlayClose = Array.from(document.querySelectorAll('.work-overlay-close'));
+
+        // elWorkOverlayClose.forEach(node => {
+        //     node.addEventListener('click', handleClickCloseScreenshot);
+        // });
     }
 
     ////////////////////////

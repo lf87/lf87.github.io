@@ -1,10 +1,13 @@
 .work {
-    .content-child {
-        padding-bottom: 0;
-    }
+    z-index: $z-work;
 }
 
-.content-screenshot {
+.work-child {
+    @include full-width;
+    margin-bottom: 2.5rem;
+}
+
+.work-screenshot {
     display: block;
     float: left;
     position: relative;
@@ -13,20 +16,22 @@
     flex: 1;
     margin-bottom: 2.5rem;
     &.active {
-        .content-screenshot-crop {
+        z-index: $z-work-screenshot-active;        
+        .work-screenshot-crop {
             img {
-                opacity: 0;
+                // opacity: 0;
             }
         }
-        .content-description {
-            transform: translate3d(0, 90%, 0);
+        .work-description {
+            transform: translate3d(0, 75%, 0);
             opacity: 1;
         }
+        .chevron {
+            transform: rotate3d(0, 0, 1, 90deg);
+        }
     }
-    &.active,
-    &:active,
     &:hover {
-        .content-screenshot-text {
+        .work-screenshot-text {
             opacity: 1;
             mix-blend-mode: normal;
         }
@@ -39,13 +44,13 @@
             transform: scale3d(1, 1, 1);
         }
     }
-    .content-screenshot-crop {
+    .work-screenshot-crop {
         height: 260px;
         width: 100%;
         float: left;
         position: relative;
         overflow: hidden;
-        z-index: 2;
+        z-index: $z-work-screenshot-crop;
         img {
             display: block;
             backface-visibility: hidden;
@@ -70,11 +75,11 @@
     }
 }
 
-.content-description {
+.work-description {
     position: absolute;
     opacity: 0;
     top: 0;
-    height: 100%;
+    height: 320px;
     width: 100%;
     left: 0;
     padding-top: 10%;
@@ -82,26 +87,24 @@
     padding-bottom: 1em;
     padding-left: 1em;
     background-color: $shark;
-    z-index: 1; // flex: 1;
+    z-index: $z-work-description;
     backface-visibility: hidden;
     will-change: transform, opacity;
     transition: transform .5s $ease-out-back, opacity .5s $ease-out-back;
+    @include bp-xs {
+        height: 280px;
+    }
+    span {
+        position: absolute;
+        bottom: 1em;
+        left: 1em;
+    }
 }
 
-.content-description-close {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: .5em;
-    background-color: $shark;
-    z-index: 5;
-}
-
-// CREATE VARIABLES FOR ZINDEX, ANIMATE THE ARROW TO POINT DOWN, FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
-
-.content-screenshot-text {
-    z-index: 2;
+// FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
+.work-screenshot-text {
+    cursor: pointer;
+    z-index: $z-work-screenshot-text;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -111,7 +114,7 @@
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-work: flex-start;
     flex: 1;
     flex-direction: column;
     backface-visibility: hidden;
@@ -122,11 +125,12 @@
     mix-blend-mode: multiply;
     h4,
     span {
-        @include font-size(29px);
+        @include font-size(27px);
         position: relative;
         will-change: transform;
         backface-visibility: hidden;
         transition: transform .8s $ease-out-back;
+        text-align: center;
     }
     h4 {
         transform: translate3d(270px, 0, 0);
@@ -146,8 +150,10 @@
     height: 30px;
     display: block;
     position: relative;
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: transform .25s ease;
     div {
-        // opacity: 0;
         backface-visibility: hidden;
         will-change: transform;
         transform: scale3d(0, 0, 0);
@@ -158,27 +164,45 @@
         &:nth-of-type(1) {
             left: 0;
             top: 0;
-            transition: transform .4s $ease-out-back .6s;
+            transition: transform .4s $ease-out-back .4s;
         }
         &:nth-of-type(2) {
             left: 6px;
             top: 6px;
-            transition: transform .4s $ease-out-back .7s;
+            transition: transform .4s $ease-out-back .5s;
         }
         &:nth-of-type(3) {
             left: 12px;
             top: 12px;
-            transition: transform .4s $ease-out-back .65s;
+            transition: transform .4s $ease-out-back .45s;
         }
         &:nth-of-type(4) {
             left: 6px;
             top: 18px;
-            transition: transform .4s $ease-out-back .75s;
+            transition: transform .4s $ease-out-back .55s;
         }
         &:nth-of-type(5) {
             left: 0;
             top: 24px;
-            transition: transform .4s $ease-out-back .8s;
+            transition: transform .4s $ease-out-back .6s;
         }
+    }
+}
+
+#overlay {
+    backface-visibility: hidden;
+    will-change: opacity;
+    transition: opacity .25s ease;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($shark, .75);
+    z-index: $z-overlay;
+    &.active {
+        opacity: 1;
     }
 }
