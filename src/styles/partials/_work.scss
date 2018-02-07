@@ -5,7 +5,26 @@
 .work-child {
     @include full-width;
     margin-bottom: 2.5rem;
+    &:nth-of-type(1) {
+        z-index: 30;
+    }
+    &:nth-of-type(2) {
+        z-index: 29;
+    }
+    &:nth-of-type(3) {
+        z-index: 28;
+    }
+    &:nth-of-type(4) {
+        z-index: 27;
+    }
+    &:nth-of-type(5) {
+        z-index: 26;
+    }
+    &:nth-of-type(6) {
+        z-index: 25;
+    }
 }
+
 
 .work-screenshot {
     display: block;
@@ -16,9 +35,8 @@
     flex: 1;
     margin-bottom: 2.5rem;
     &.active {
-        z-index: $z-work-screenshot-active;
         .work-description {
-            transform: translate3d(0, 74%, 0);
+            transform: translate3d(0, 50%, 0);
             opacity: 1;
             pointer-events: unset;
             @include bp-xs {
@@ -29,6 +47,7 @@
             transform: rotate3d(0, 0, 1, 90deg);
         }
     }
+
     &:hover {
         .work-screenshot-text {
             opacity: 1;
@@ -43,8 +62,9 @@
             transform: scale3d(1, 1, 1);
         }
     }
+
     .work-screenshot-crop {
-        height: 260px;
+        height: 210px;
         width: 100%;
         float: left;
         position: relative;
@@ -70,18 +90,18 @@
             height: 100%;
         }
     }
+
     &:hover {
         img {
             opacity: .4;
         }
     }
 }
-
 .work-description {
     position: absolute;
     opacity: 0;
     top: 0;
-    height: 320px;
+    height: 360px;
     width: 100%;
     left: 0;
     padding-top: 10%;
@@ -97,13 +117,13 @@
     @include bp-xs {
         height: 240px;
     }
+
     span {
         position: absolute;
         bottom: 1em;
         left: 1em;
     }
 }
-
 // FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
 .work-screenshot-text {
     cursor: pointer;
@@ -128,18 +148,20 @@
     mix-blend-mode: multiply;
     h4,
     span {
-        @include font-size(24px);
+        @include font-size(22px);
         position: relative;
         will-change: transform;
         backface-visibility: hidden;
         transition: transform .8s $ease-out-back;
         text-align: center;
     }
+
     h4 {
         transform: translate3d(270px, 0, 0);
         width: auto;
         margin-bottom: 0;
     }
+
     span {
         font-weight: 700;
         margin-bottom: 1rem;
@@ -147,7 +169,6 @@
         color: $white;
     }
 }
-
 .chevron {
     width: 18px;
     height: 30px;
@@ -190,4 +211,16 @@
             transition: transform .4s $ease-out-back .6s;
         }
     }
+}
+.work-close {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    font-weight: 700;
+    background-color: $punch;
+    padding: .5em;
+    border: 0;
+    color: $shark;
+    border-radius: 3px;
+    cursor: pointer;
 }

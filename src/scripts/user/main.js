@@ -76,7 +76,6 @@
             node.addEventListener('click', handleClickScreenshot);
             node.addEventListener('mouseleave', handleMouseOutScreenshot);
         });
-
     }
 
     ////////////////////////
