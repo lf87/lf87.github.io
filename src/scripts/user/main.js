@@ -4,7 +4,6 @@
     // "Global" Variables //
     ////////////////////////
     const elMenu = document.getElementById('menu');
-    const elOverlay = document.getElementById('overlay');
     let elMenuLi = Array.from(elMenu.getElementsByTagName('li'));
 
     /////////////////////////////
@@ -62,14 +61,12 @@
             //     node.classList.remove('active');
             // });
             e.currentTarget.classList.toggle('active');
-            elOverlay.classList.toggle('active');
         };
         
         // Remove classes from '.work-screenshot'
         const handleMouseOutScreenshot = (e) => {
             e.preventDefault();
             e.currentTarget.classList.remove('active');
-            elOverlay.classList.remove('active');
         };
 
         //  Add event listener to each '.work-screenshot'
@@ -80,18 +77,6 @@
             node.addEventListener('mouseleave', handleMouseOutScreenshot);
         });
 
-        // // Add and remove classes for parent of each '.work-overlay-close'
-        // const handleClickCloseScreenshot = (e) => {
-        //     e.preventDefault();
-        //     e.currentTarget.parentNode.classList.remove('active');
-        // };
-
-        // //  Add event listener to each '.work-overlay-close'
-        // let elWorkOverlayClose = Array.from(document.querySelectorAll('.work-overlay-close'));
-
-        // elWorkOverlayClose.forEach(node => {
-        //     node.addEventListener('click', handleClickCloseScreenshot);
-        // });
     }
 
     ////////////////////////

@@ -16,10 +16,11 @@
     flex: 1;
     margin-bottom: 2.5rem;
     &.active {
-        z-index: $z-work-screenshot-active;        
+        z-index: $z-work-screenshot-active;
         .work-description {
-            transform: translate3d(0, 75%, 0);
+            transform: translate3d(0, 74%, 0);
             opacity: 1;
+            pointer-events: unset;
             @include bp-xs {
                 transform: translate3d(0, 115%, 0);
             }
@@ -92,6 +93,7 @@
     backface-visibility: hidden;
     will-change: transform, opacity;
     transition: transform .5s $ease-out-back, opacity .5s $ease-out-back;
+    pointer-events: none;
     @include bp-xs {
         height: 240px;
     }
@@ -126,7 +128,7 @@
     mix-blend-mode: multiply;
     h4,
     span {
-        @include font-size(27px);
+        @include font-size(24px);
         position: relative;
         will-change: transform;
         backface-visibility: hidden;
@@ -187,23 +189,5 @@
             top: 24px;
             transition: transform .4s $ease-out-back .6s;
         }
-    }
-}
-
-#overlay {
-    backface-visibility: hidden;
-    will-change: opacity;
-    transition: opacity .25s ease;
-    opacity: 0;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba($shark, .75);
-    z-index: $z-overlay;
-    &.active {
-        opacity: 1;
     }
 }
