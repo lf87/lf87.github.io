@@ -25,7 +25,6 @@
     }
 }
 
-
 .work-screenshot {
     display: block;
     float: left;
@@ -36,9 +35,10 @@
     margin-bottom: 2.5rem;
     &.active {
         .work-description {
-            transform: translate3d(0, 50%, 0);
+            transform: translate3d(0, 48%, 0);
             opacity: 1;
             pointer-events: unset;
+            transition: transform .5s $ease-out-back 0, opacity .5s $ease-out-back 0;
             @include bp-xs {
                 transform: translate3d(0, 115%, 0);
             }
@@ -47,7 +47,6 @@
             transform: rotate3d(0, 0, 1, 90deg);
         }
     }
-
     &:hover {
         .work-screenshot-text {
             opacity: 1;
@@ -62,7 +61,6 @@
             transform: scale3d(1, 1, 1);
         }
     }
-
     .work-screenshot-crop {
         height: 210px;
         width: 100%;
@@ -90,13 +88,13 @@
             height: 100%;
         }
     }
-
     &:hover {
         img {
             opacity: .4;
         }
     }
 }
+
 .work-description {
     position: absolute;
     opacity: 0;
@@ -112,18 +110,18 @@
     z-index: $z-work-description;
     backface-visibility: hidden;
     will-change: transform, opacity;
-    transition: transform .5s $ease-out-back, opacity .5s $ease-out-back;
+    transition: transform .5s $ease-out-back .15s, opacity .5s $ease-out-back .15s;
     pointer-events: none;
     @include bp-xs {
         height: 240px;
     }
-
     span {
         position: absolute;
         bottom: 1em;
         left: 1em;
     }
 }
+
 // FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
 .work-screenshot-text {
     cursor: pointer;
@@ -155,13 +153,11 @@
         transition: transform .8s $ease-out-back;
         text-align: center;
     }
-
     h4 {
         transform: translate3d(270px, 0, 0);
         width: auto;
         margin-bottom: 0;
     }
-
     span {
         font-weight: 700;
         margin-bottom: 1rem;
@@ -169,6 +165,7 @@
         color: $white;
     }
 }
+
 .chevron {
     width: 18px;
     height: 30px;
@@ -212,6 +209,7 @@
         }
     }
 }
+
 .work-close {
     position: absolute;
     bottom: 1em;
@@ -222,5 +220,6 @@
     border: 0;
     color: $shark;
     border-radius: 3px;
+    outline: none;
     cursor: pointer;
 }
