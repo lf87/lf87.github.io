@@ -20,6 +20,9 @@
         .work-description {
             transform: translate3d(0, 75%, 0);
             opacity: 1;
+            @include bp-xs {
+                transform: translate3d(0, 115%, 0);
+            }
         }
         .chevron {
             transform: rotate3d(0, 0, 1, 90deg);
@@ -46,6 +49,9 @@
         position: relative;
         overflow: hidden;
         z-index: $z-work-screenshot-crop;
+        @include bp-xs {
+            height: 330px;
+        }
         img {
             display: block;
             backface-visibility: hidden;
@@ -87,7 +93,7 @@
     will-change: transform, opacity;
     transition: transform .5s $ease-out-back, opacity .5s $ease-out-back;
     @include bp-xs {
-        height: 280px;
+        height: 240px;
     }
     span {
         position: absolute;
