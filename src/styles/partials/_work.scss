@@ -17,11 +17,6 @@
     margin-bottom: 2.5rem;
     &.active {
         z-index: $z-work-screenshot-active;        
-        .work-screenshot-crop {
-            img {
-                // opacity: 0;
-            }
-        }
         .work-description {
             transform: translate3d(0, 75%, 0);
             opacity: 1;
