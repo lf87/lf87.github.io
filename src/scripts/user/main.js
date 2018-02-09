@@ -54,7 +54,7 @@
             node.addEventListener('click', handleClickMenu);
         });
 
-        // Add classes to '.work-screenshot'
+        // Add/Remove active class to '.work-screenshot'
         const handleClickScreenshot = (e) => {
             e.preventDefault();
             // elWorkScreenshot.forEach(node => {
@@ -62,19 +62,27 @@
             // });
             e.currentTarget.classList.toggle('active');
         };
-        
-        // Remove classes from '.work-screenshot'
-        const handleMouseOutScreenshot = (e) => {
+
+        // Add/Remove hover class from '.work-screenshot'
+        const handleMouseInScreenshot = (e) => {
             e.preventDefault();
-            e.currentTarget.classList.remove('active');
+            e.currentTarget.classList.toggle('active');
         };
+
+        // GET HOVER STUFF WORKING FOR DESKTOP AND MOB
+        // Remove classes from '.work-screenshot'
+        // const handleMouseOutScreenshot = (e) => {
+        //     e.preventDefault();
+        //     e.currentTarget.classList.remove('active');
+        // };
 
         //  Add event listener to each '.work-screenshot'
         let elWorkScreenshot = Array.from(document.querySelectorAll('.work-screenshot'));
 
         elWorkScreenshot.forEach(node => {
             node.addEventListener('click', handleClickScreenshot);
-            node.addEventListener('mouseleave', handleMouseOutScreenshot);
+            node.addEventListener('mouseenter', handleMouseInScreenshot);
+            // node.addEventListener('mouseleave', handleMouseOutScreenshot);
         });
     }
 
