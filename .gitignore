@@ -7,3 +7,4 @@ dist
 /*.html
 /*.php
 /*.css
+npm-debug.log
