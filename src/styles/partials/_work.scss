@@ -2,23 +2,60 @@
     z-index: $z-work;
 }
 
+.work-screenshots {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    @include bp-xs {
+        width: calc(100% + 2rem);
+        margin-left: -1rem;
+    }
+}
+
 .work-screenshot {
     @include full-width;
-    display: block;
-    display: flex;
-    flex: 1;
     margin-bottom: 2.5rem;
+    @include bp-xs-hf {
+        flex-basis: calc(50% - 1rem);
+        margin-bottom: 0;
+        margin: 0 .5rem 1rem;
+    }
+    @include bp-lg {
+        flex-basis: 33.333%
+    }
     &.active {
         .work-description {
             transform: scale3d(1, 1, 1);
             opacity: 1;
             pointer-events: unset;
         }
+        .work-screenshot-text {
+            opacity: 0;
+            .is-touch-device & {
+                opacity: 1;
+            }
+        }
     }
+    &.show-screenshot {
+        .work-screenshot-crop img {
+            opacity: 1;
+        }
+        .work-screenshot-text {
+            display: none;
+        }
+        .work-description {
+            background-color: transparent;
+            p,
+            span {
+                opacity: 0;
+            }
+        }
+    }
+    .is-touch-device &,
     &:hover {
         .work-screenshot-text {
-            opacity: 1;
-            // mix-blend-mode: normal;
+            opacity: 1; // mix-blend-mode: normal;
         }
         h4,
         span {
@@ -37,12 +74,11 @@
         overflow: hidden;
         z-index: $z-work-screenshot-crop;
         @include bp-xs {
-            height: 330px;
+            height: 303px;
         }
         img {
             display: block;
             backface-visibility: hidden;
-            will-change: transition;
             width: 100%;
             position: absolute;
             left: 0;
@@ -53,7 +89,9 @@
             top: 50%;
             object-fit: cover;
             object-position: 0 0;
-            height: 100%;
+            height: 100%; // .is-touch-device & {
+            //     transition: none;
+            // }
         }
     }
 }
@@ -66,7 +104,7 @@
     width: 100%;
     left: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     padding-top: 1em;
     padding-right: 1em;
@@ -77,8 +115,20 @@
     backface-visibility: hidden;
     will-change: transform, opacity;
     transition: transform .5s $ease-out-back .15s, opacity .5s $ease-out-back .15s;
-    transform: scale3d(.4, .4, .4);
+    transform: scale3d(.8, .8, .8);
     pointer-events: none;
+    .is-touch-device & {
+        transition: transform .5s $ease-out-back, opacity .5s $ease-out-back, background-color .5s $ease-out-back;
+        will-change: background-color;
+        transform: scale3d(.95, .95, .95);
+        p,
+        span {
+            will-change: opacity;
+            backface-visibility: hidden;
+            transition: opacity .5s $ease-out-back;
+            opacity: 1;
+        }
+    }
     span {
         position: absolute;
         bottom: 1em;
@@ -101,11 +151,13 @@
     flex: 1;
     flex-direction: column;
     backface-visibility: hidden;
-    will-change: transition;
-    transition: opacity .6s $ease-out-cubic;
+    will-change: opacity;
+    transition: opacity .3s $ease-out-cubic;
     opacity: 0;
-    background-color: rgba($shark, 1);
-    // mix-blend-mode: multiply;
+    background-color: rgba($shark, 1); // mix-blend-mode: multiply;
+    .is-touch-device & {
+        transition: none;
+    }
     h4,
     span {
         @include font-size(22px);
@@ -114,6 +166,9 @@
         backface-visibility: hidden;
         transition: transform .8s $ease-out-back;
         text-align: center;
+        .is-touch-device & {
+            transition: none;
+        }
     }
     h4 {
         transform: translate3d(270px, 0, 0);
@@ -136,6 +191,9 @@
     backface-visibility: hidden;
     will-change: transform;
     transition: transform .25s ease;
+    .is-touch-device & {
+        transition: none;
+    }
     div {
         backface-visibility: hidden;
         will-change: transform;
@@ -148,26 +206,41 @@
             left: 0;
             top: 0;
             transition: transform .4s $ease-out-back .4s;
+            .is-touch-device & {
+                transition: none;
+            }
         }
         &:nth-of-type(2) {
             left: 6px;
             top: 6px;
             transition: transform .4s $ease-out-back .5s;
+            .is-touch-device & {
+                transition: none;
+            }
         }
         &:nth-of-type(3) {
             left: 12px;
             top: 12px;
             transition: transform .4s $ease-out-back .45s;
+            .is-touch-device & {
+                transition: none;
+            }
         }
         &:nth-of-type(4) {
             left: 6px;
             top: 18px;
             transition: transform .4s $ease-out-back .55s;
+            .is-touch-device & {
+                transition: none;
+            }
         }
         &:nth-of-type(5) {
             left: 0;
             top: 24px;
             transition: transform .4s $ease-out-back .6s;
+            .is-touch-device & {
+                transition: none;
+            }
         }
     }
 }
@@ -180,8 +253,15 @@
     background-color: $punch;
     padding: .5em;
     border: 0;
-    color: $shark;
-    border-radius: 3px;
+    color: $white;
+    border-radius: 2px;
     outline: none;
     cursor: pointer;
+}
+
+.work-show-screenshot {
+    display: none;
+    .is-touch-device & {
+        display: initial;
+    }
 }

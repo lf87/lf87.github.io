@@ -54,18 +54,51 @@
             node.addEventListener('click', handleClickMenu);
         });
 
-        // Add/Remove active class to '.work-screenshot'
+        // Add active class to '.work-screenshot'
         const handleClickScreenshot = (e) => {
-            e.preventDefault();
-            e.currentTarget.classList.toggle('active');
+            e.currentTarget.classList.add('active');
         };
 
         //  Add event listener to each '.work-screenshot'
         let elWorkScreenshot = Array.from(document.querySelectorAll('.work-screenshot'));
-
         elWorkScreenshot.forEach(node => {
             node.addEventListener('click', handleClickScreenshot);
         });
+
+        // Remove active class to parent parent of '.work-close' (.work-screenshot)
+        const handleClickClose = (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // Stop bubbling up DOM and triggering seperate click
+            e.currentTarget.parentNode.parentNode.classList.remove('active', 'show-screenshot');
+        };
+
+        //  Add event listener to each '.work-close'
+        let elWorkClose = Array.from(document.querySelectorAll('.work-close'));
+        elWorkClose.forEach(node => {
+            node.addEventListener('click', handleClickClose);
+        });
+
+
+
+
+        // Add/Remove active class to '.work-show-screenshot'
+        const handleClickShowScreenshot = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.parentNode.parentNode.parentNode.classList.toggle('show-screenshot');
+        };
+
+        //  Add event listener to each '.work-show-screenshot'
+        let elWorkShowScreenshot = Array.from(document.querySelectorAll('.work-show-screenshot'));
+        elWorkShowScreenshot.forEach(node => {
+            node.addEventListener('click', handleClickShowScreenshot);
+        });
+    }
+    /////////////////////////
+    // Detect touch device //
+    /////////////////////////
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        document.body.classList.add('is-touch-device');
     }
 
     ////////////////////////
