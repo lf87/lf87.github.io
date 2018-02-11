@@ -16,7 +16,7 @@
         let duration;
 
         // Create timeline
-        const tlSwitch = new TimelineMax({
+        const tlSwitch = new TimelineLite({
             onComplete: function() {
                 this.restart();
             }
