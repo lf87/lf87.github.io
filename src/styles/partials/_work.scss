@@ -263,13 +263,12 @@
     right: 1rem;
     font-weight: 700;
     background-color: $punch;
-    padding: 0 .5em;
+    padding: .6em .5em;
     border: 0;
     color: $white;
     border-radius: 2px;
     outline: none;
-    line-height: 32px;
-    height: 32px;
+    line-height: 1;
     cursor: pointer;
     will-change: filter;
     transition: filter.25s ease;
