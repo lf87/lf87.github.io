@@ -64,10 +64,10 @@
         };
 
         // Add/Remove hover class from '.work-screenshot'
-        const handleMouseInScreenshot = (e) => {
-            e.preventDefault();
-            e.currentTarget.classList.toggle('active');
-        };
+        // const handleMouseInScreenshot = (e) => {
+        //     e.preventDefault();
+        //     e.currentTarget.classList.toggle('active');
+        // };
 
         // GET HOVER STUFF WORKING FOR DESKTOP AND MOB
         // Remove classes from '.work-screenshot'
@@ -78,12 +78,20 @@
 
         //  Add event listener to each '.work-screenshot'
         let elWorkScreenshot = Array.from(document.querySelectorAll('.work-screenshot'));
-
+        
         elWorkScreenshot.forEach(node => {
             node.addEventListener('click', handleClickScreenshot);
-            node.addEventListener('mouseenter', handleMouseInScreenshot);
+            // node.addEventListener('mouseenter', handleMouseInScreenshot);
             // node.addEventListener('mouseleave', handleMouseOutScreenshot);
         });
+        // Get height of each .work-description
+        // let elWorkDescription = Array.from(document.querySelectorAll('.work-description'));
+        
+        // Array.prototype.forEach.call(elWorkDescription, function (e) {
+        //     let x = e.offsetHeight;
+        //     e.setAttribute("style", `height:${x}px; position: absolute; bottom: -${x}px`);
+        // });
+
     }
 
     ////////////////////////
