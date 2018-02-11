@@ -2,55 +2,28 @@
     z-index: $z-work;
 }
 
-.work-child {
-    @include full-width;
-    margin-bottom: 2.5rem;
-    &:nth-of-type(1) {
-        z-index: 30;
-    }
-    &:nth-of-type(2) {
-        z-index: 29;
-    }
-    &:nth-of-type(3) {
-        z-index: 28;
-    }
-    &:nth-of-type(4) {
-        z-index: 27;
-    }
-    &:nth-of-type(5) {
-        z-index: 26;
-    }
-    &:nth-of-type(6) {
-        z-index: 25;
-    }
-}
-
 .work-screenshot {
+    @include full-width;
     display: block;
-    float: left;
-    position: relative;
-    width: 100%;
     display: flex;
     flex: 1;
     margin-bottom: 2.5rem;
     &.active {
         .work-description {
-            transform: translate3d(0, 48%, 0);
+            transform: scale3d(1, 1, 1);
             opacity: 1;
-            pointer-events: unset;
-            transition: transform .5s $ease-out-back 0, opacity .5s $ease-out-back 0;
-            @include bp-xs {
-                transform: translate3d(0, 115%, 0);
-            }
-        }
-        .chevron {
-            transform: rotate3d(0, 0, 1, 90deg);
-        }
+            pointer-events: unset; // transition: transform .5s $ease-out-back 0, opacity .5s $ease-out-back 0;
+            // @include bp-xs {
+            //     transform: translate3d(0, 115%, 0);
+            // }
+        } // .chevron {
+        //     transform: rotate3d(0, 0, 1, 90deg);
+        // }
     }
     &:hover {
         .work-screenshot-text {
             opacity: 1;
-            mix-blend-mode: normal;
+            // mix-blend-mode: normal;
         }
         h4,
         span {
@@ -87,22 +60,24 @@
             object-position: 0 0;
             height: 100%;
         }
-    }
-    &:hover {
-        img {
-            opacity: .4;
-        }
-    }
+    } // &:hover {
+    //     img {
+    //         opacity: .4;
+    //     }
+    // }
 }
 
 .work-description {
     position: absolute;
     opacity: 0;
     top: 0;
-    height: 360px;
+    height: 100%;
     width: 100%;
     left: 0;
-    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 1em;
     padding-right: 1em;
     padding-bottom: 1em;
     padding-left: 1em;
@@ -111,10 +86,8 @@
     backface-visibility: hidden;
     will-change: transform, opacity;
     transition: transform .5s $ease-out-back .15s, opacity .5s $ease-out-back .15s;
+    transform: scale3d(.4, .4, .4);
     pointer-events: none;
-    @include bp-xs {
-        height: 240px;
-    }
     span {
         position: absolute;
         bottom: 1em;
@@ -122,7 +95,6 @@
     }
 }
 
-// FADE OUT PAGE BG ON CLICK, FIX CLOSE BUTTON ISSUE
 .work-screenshot-text {
     cursor: pointer;
     z-index: $z-work-screenshot-text;
@@ -131,11 +103,10 @@
     height: 100%;
     position: absolute;
     top: 0;
-    padding-top: 45px;
     left: 0;
     display: flex;
     align-items: center;
-    justify-work: flex-start;
+    justify-content: center;
     flex: 1;
     flex-direction: column;
     backface-visibility: hidden;
@@ -143,7 +114,7 @@
     transition: opacity .6s $ease-out-cubic;
     opacity: 0;
     background-color: rgba($shark, 1);
-    mix-blend-mode: multiply;
+    // mix-blend-mode: multiply;
     h4,
     span {
         @include font-size(22px);
