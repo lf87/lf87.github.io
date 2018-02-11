@@ -4,6 +4,7 @@
     // "Global" Variables //
     ////////////////////////
     const elMenu = document.getElementById('menu');
+    const elBody = document.body;
     let elMenuLi = Array.from(elMenu.getElementsByTagName('li'));
 
     /////////////////////////////
@@ -97,8 +98,10 @@
     /////////////////////////
     // Detect touch device //
     /////////////////////////
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        document.body.classList.add('is-touch-device');
+
+    const touch = 'ontouchstart' in document.documentElement;
+    if (touch) {
+        elBody.classList.add('is-touch-device');
     }
 
     ////////////////////////
