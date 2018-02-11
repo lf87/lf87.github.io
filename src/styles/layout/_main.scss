@@ -12,11 +12,11 @@
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: right top;
+    background-position: center top;
 }
 
 .content {
-    *:last-child {
+    > *:last-child {
         margin-bottom: 0;
     }
     ul {
@@ -112,6 +112,9 @@
 body::before {
     background-image: $bg-solid-gradient, url('dist/assets/img/bg-birdseye.jpg');
     z-index: $z-body-before;
+    background-size: cover;    
+    background-position: center top;
+    background-repeat: no-repeat;
 }
 
 .about {
