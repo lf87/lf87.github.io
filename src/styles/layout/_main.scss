@@ -16,7 +16,7 @@
 }
 
 .content {
-    > *:last-child {
+    >*:last-child {
         margin-bottom: 0;
     }
     ul {
@@ -112,7 +112,7 @@
 body::before {
     background-image: $bg-solid-gradient, url('dist/assets/img/bg-birdseye.jpg');
     z-index: $z-body-before;
-    background-size: cover;    
+    background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
 }
@@ -123,6 +123,9 @@ body::before {
 }
 
 .work {
-    background-image: $bg-solid-gradient, url('dist/assets/img/bg-laptop-2.jpg');
     z-index: $z-section-with-bg;
+    background-image: $bg-solid-gradient;
+    @include bp-sm {
+        background-image: $bg-solid-gradient, url('dist/assets/img/bg-laptop-3.jpg');
+    }
 }
