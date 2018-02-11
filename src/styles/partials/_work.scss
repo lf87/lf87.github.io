@@ -22,7 +22,7 @@
         margin: 0 .5rem 1rem;
     }
     @include bp-lg {
-        flex-basis: 33.333%
+        flex-basis: calc(33.333% - 1rem);
     }
     &.active {
         .work-description {
@@ -67,7 +67,7 @@
         }
     }
     .work-screenshot-crop {
-        height: 210px;
+        height: 290px;
         width: 100%;
         float: left;
         position: relative;
@@ -75,6 +75,9 @@
         z-index: $z-work-screenshot-crop;
         @include bp-xs {
             height: 303px;
+        }
+        @include bp-lg {
+            height: 420px;
         }
         img {
             display: block;
@@ -128,6 +131,9 @@
             transition: opacity .5s $ease-out-back;
             opacity: 1;
         }
+    }
+    > p strong {
+        color: $punch;
     }
     span {
         position: absolute;
@@ -250,8 +256,8 @@
 
 .work-close {
     position: absolute;
-    bottom: 1em;
-    right: 1em;
+    bottom: 1rem;
+    right: 1rem;
     font-weight: 700;
     background-color: $punch;
     padding: .5em;

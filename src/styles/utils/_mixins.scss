@@ -39,8 +39,14 @@
 }
 
 // Mobile first Breakpoints
+@mixin bp-xl {
+    @media only screen and (min-width: 1400px) {
+        @content;
+    }
+}
+
 @mixin bp-lg {
-    @media only screen and (min-width: 1199px) {
+    @media only screen and (min-width: 1200px) {
         @content;
     }
 }
