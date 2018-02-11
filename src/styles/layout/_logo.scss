@@ -4,7 +4,7 @@
     float: left;
     display: block;
     margin-bottom: 1em;
-    @include bp-hsm {
+    @include bp-sm {
         // padding-top: 8rem;
     }
     span {
@@ -17,12 +17,32 @@
 }
 
 .logo {
-    width: 30%;
+    width: 100%;
+    position: relative;
     min-width: 5rem;
     max-width: 12rem;
     display: block;
     filter: blur(.1px);
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    svg {
+        width: 6rem;
+        margin-bottom: 1em;
+        @include bp-xs {
+            width: 6.5rem;
+        }
+        @include bp-sm {
+            width: 7rem;
+        }
+        @include bp-md {
+            width: 8rem;
+        }
+        @include bp-lg {
+            width: 9rem;
+        }
+    }
     .home & {
         margin-bottom: 2rem;
     }

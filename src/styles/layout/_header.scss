@@ -47,6 +47,9 @@
             display: inline-block;
             font-weight: 700;
             text-decoration: none;
+            @include bp-sm {
+                padding: 0.85em 10px;
+            }
             &:after {
                 content: '';
                 display: block;

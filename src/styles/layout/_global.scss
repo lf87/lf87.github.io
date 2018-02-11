@@ -2,6 +2,18 @@ html {
     @include lato;
     height: 100%; // background-image: url('https://lf87.github.io/dist/assets/img/sunset.jpg');
     @include font-size(15px);
+    @include bp-xs {
+        @include font-size(16px);
+    }
+    @include bp-sm {
+        @include font-size(17px);
+    }
+    @include bp-md {
+        @include font-size(19px);
+    }
+    @include bp-lg {
+        @include font-size(21px);
+    }
 }
 
 body {
@@ -52,7 +64,6 @@ body {
     scrollbar-track-color: $mineshaft;
     scrollbar-face-color: $capecod;
 }
-
 
 main {
     @include full-width;
