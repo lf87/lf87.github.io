@@ -3,9 +3,5 @@ logs
 ngrok.exe
 maps
 reports
-dist
-/*.html
-/*.php
-/*.css
 npm-debug.log
 .vscode/settings.json
