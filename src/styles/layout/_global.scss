@@ -49,7 +49,7 @@ body {
 }
 
  ::-webkit-scrollbar-thumb {
-    background: $capecod;
+    background: lighten($capecod, 5%);
     border: 2px solid $mineshaft;
     border-radius: 8px;
 }
