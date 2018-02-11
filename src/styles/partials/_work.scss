@@ -263,12 +263,20 @@
     right: 1rem;
     font-weight: 700;
     background-color: $punch;
-    padding: .5em;
+    padding: 0 .5em;
     border: 0;
     color: $white;
     border-radius: 2px;
     outline: none;
+    line-height: 32px;
+    height: 32px;
     cursor: pointer;
+    will-change: filter;
+    transition: filter.25s ease;
+    backface-visibility: hidden;
+    &:hover {
+        filter: brightness(110%);
+    }
 }
 
 .work-show-screenshot {
