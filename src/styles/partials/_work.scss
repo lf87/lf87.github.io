@@ -12,13 +12,8 @@
         .work-description {
             transform: scale3d(1, 1, 1);
             opacity: 1;
-            pointer-events: unset; // transition: transform .5s $ease-out-back 0, opacity .5s $ease-out-back 0;
-            // @include bp-xs {
-            //     transform: translate3d(0, 115%, 0);
-            // }
-        } // .chevron {
-        //     transform: rotate3d(0, 0, 1, 90deg);
-        // }
+            pointer-events: unset;
+        }
     }
     &:hover {
         .work-screenshot-text {
@@ -60,11 +55,7 @@
             object-position: 0 0;
             height: 100%;
         }
-    } // &:hover {
-    //     img {
-    //         opacity: .4;
-    //     }
-    // }
+    }
 }
 
 .work-description {
