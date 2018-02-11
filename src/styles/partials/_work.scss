@@ -24,6 +24,9 @@
     @include bp-lg {
         flex-basis: calc(33.333% - 1rem);
     }
+    &:last-of-type {
+        margin-bottom: 0;
+    }
     &.active {
         .work-description {
             transform: scale3d(1, 1, 1);

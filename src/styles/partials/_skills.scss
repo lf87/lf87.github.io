@@ -15,4 +15,14 @@
     @include bp-xs-hf {
         flex-basis: 33.333%;
     }
+    &:last-of-type {
+        ul {
+            margin-bottom: 0;
+        }
+    }
+    ul {
+        @include bp-xs-hf {
+            margin-bottom: 0;
+        }
+    }
 }
