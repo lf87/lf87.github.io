@@ -263,7 +263,7 @@
             .pipe(critical({
                 base: dist.pages,
                 inline: true,
-                css: dist.css,
+                css: dist.css + 'style.css',
                 width: 1300,
                 height: 900
             }))
